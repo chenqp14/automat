@@ -1,0 +1,2 @@
+-zapisanie konfiguracji
+-szersza obsługa błędów
