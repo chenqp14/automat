@@ -28,7 +28,10 @@ int main(int argc, char *argv[]){
 	int how_often_image=1;
 	int temp=0;
 	char *out=NULL;
-	FILE *outp=NULL;	
+	FILE *outp=NULL;
+	FILE *inp=NULL;
+	int i=0;
+	char ima_name[30];	
 	while ((opt = getopt (argc, argv, "p:n:c:j:f:k:s:o:")) != -1) {
 	    switch (opt) {
 	    case 'p':
@@ -56,7 +59,7 @@ int main(int argc, char *argv[]){
 				out=optarg;
 				break;
 	}}
-		FILE *inp=NULL;
+		
 		if (in!=NULL) inp=fopen(in,"r");
 		else {
 			if(constans!=NULL) inp=fopen(constans,"r");
@@ -75,9 +78,7 @@ int main(int argc, char *argv[]){
 
 	new_matrix=make_matrix (old_matrix->rn, old_matrix->cn);
 	if(type_neighbor_name!=NULL && strcmp(buff,type_neighbor_name)==0) type_neighbor=1;
-
-	int i=0;
-	char ima_name[30];	
+	
 	BITMAP *pic1=initiate_im(old_matrix);
 	if(pic1 ==NULL){
 		fprintf (stderr, "%s: can not initiate bitmap\n\n", argv[0]);
@@ -85,17 +86,22 @@ int main(int argc, char *argv[]){
     }
 	for(i=0; i<nr_generations;i++){
 		new_matrix=save_generation(old_matrix,new_matrix,type_neighbor);
-		if((i+1)%how_often_image==0){ temp++; painting(new_matrix,pic1,temp,ima_name,folder,format);}
+		if((i+1)%how_often_image==0){ 
+			temp++; painting(new_matrix,pic1,temp,ima_name,folder,format);
+		}
 		memcpy (old_matrix->e, new_matrix->e, sizeof(int)*old_matrix->rn*old_matrix->cn);
 	}
 	if(out==NULL)	outp=fopen("conf.txt","w");
-	else {
-			outp=fopen(out,"w");
-			fprintf (stderr, "%s: can not open out file\n\n", argv[0]);
-      exit (EXIT_FAILURE);
-	}
+	else 	outp=fopen(out,"w");
+	if(outp==NULL){
+		fprintf (stderr, "%s: can not open out file\n\n", argv[0]);
+      		exit (EXIT_FAILURE);
+			}
+	
 	set_to_file(outp,new_matrix);
 	destroy_bitmap(pic1);
 	allegro_exit();
+	fclose(inp);
+	fclose(outp);	
 	return 0;
 }

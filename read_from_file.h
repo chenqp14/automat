@@ -4,7 +4,7 @@
 typedef struct m{
 	int rn;
 	int cn;
-	int *e;
+	char* e;
 } matrix_t;
 
 matrix_t *make_matrix(int rn, int cn);

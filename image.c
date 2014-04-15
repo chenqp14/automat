@@ -30,7 +30,7 @@ void painting (matrix_t *matrix,BITMAP *pic1, int nr_im, char img_name[], char *
 	int p=0;
 	clear_to_color( pic1, 255);
 	for(p=0;p<(matrix->cn*matrix->rn);p++)
-		if(matrix->e[p]==1) rectfill(pic1,50*(p%matrix->cn),50*(p/matrix->cn),50*(p%matrix->cn)+50,50*(p/matrix->cn)+50,0);		
+		if(matrix->e[p]=='1') rectfill(pic1,50*(p%matrix->cn),50*(p/matrix->cn),50*(p%matrix->cn)+50,50*(p/matrix->cn)+50,0);		
 	im_name(nr_im,img_name,folder, format);
 	save_bitmap(img_name, pic1 , default_palette );
 }

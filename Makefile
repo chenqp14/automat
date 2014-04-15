@@ -1,7 +1,7 @@
 FLAGS= -Wall -ansi -pedantic 
 all: cos.out
 cos.out: main.o read_from_file.o image.o cellular_automaton.o principles_of_neighborhood.o save_set.o
-	$(CC) -g -o zycie.out main.o read_from_file.o image.o save_set.o cellular_automaton.o principles_of_neighborhood.o -lalleg
+	$(CC) -g -O0 -o zycie.out main.o read_from_file.o image.o save_set.o cellular_automaton.o principles_of_neighborhood.o -lalleg
 main.o: main.c image.h read_from_file.h cellular_automaton.h principles_of_neighborhood.h save_set.h
 	$(CC) $(CFLAGS) -c main.c 
 principles_of_neighborhood.o: principles_of_neighborhood.c principles_of_neighborhood.h read_from_file.h
