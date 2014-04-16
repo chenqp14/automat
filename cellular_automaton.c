@@ -15,10 +15,7 @@ int chge_cell(int nr_live_neighbors, int cell_pos, matrix_t *old_matrix){
 }
 matrix_t *save_generation( matrix_t *old_matrix, matrix_t *new_matrix, int type_neighbor){
 	int temp=0;
-	//int nr_live_neighbors=0;
-	for(temp=0;temp<old_matrix->rn*old_matrix->cn; temp++){
-		//nr_live_neighbors=srch_neighbor(temp, old_matrix, type_neighbor);
-			
+	for(temp=0;temp<old_matrix->rn*old_matrix->cn; temp++){	
 		new_matrix->e[temp]=chge_cell( srch_neighbor(temp, old_matrix, type_neighbor), temp , old_matrix);
 	}
 	return new_matrix;

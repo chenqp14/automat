@@ -54,6 +54,7 @@ matrix_t * read_matrix (FILE * in)
     return NULL;
   if ((new_mat = make_matrix (rn, cn)) == NULL)
     return NULL;
+	printf("przed while\n");
 	while ((x=fgetc(in))!=EOF)
 		if(x=='1' || x=='0') {
 				new_mat->e[index]=x;
