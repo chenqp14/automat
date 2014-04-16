@@ -16,7 +16,6 @@
 int main(int argc, char *argv[]){
 	char *in=NULL;
 	char *constans=NULL;
-printf("w main\n");
 	char *format=NULL;
 	char *folder=NULL;	
 	char *type_neighbor_name=NULL;
